@@ -1,0 +1,31 @@
+all: main clean.o
+main: main.o f1.o f2.o f3.o der_f1.o der_f2.o der_f3.o
+	gcc -lm -m32 *.o -o main
+
+main.o: main.c
+	gcc -c -m32 main.c
+	
+f1.o: f1.asm
+	nasm -f elf32 f1.asm 
+	
+f2.o: f2.asm
+	nasm -f elf32 f2.asm
+	
+f3.o: f3.asm
+	nasm -f elf32 f3.asm 
+	
+der_f1.o: der_f1.asm
+	nasm -f elf32 der_f1.asm 
+	
+der_f2.o: der_f2.asm
+	nasm -f elf32 der_f2.asm 
+	
+der_f3.o: der_f3.asm
+	nasm -f elf32 der_f3.asm 
+	
+clean.o:
+	rm -rf *.o
+	
+clean:
+	rm -rf *.o main
+	
